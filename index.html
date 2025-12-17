@@ -1,773 +1,355 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ALBA - Justicia con Tranquilidad</title>
-  
-  <!-- Importar Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Importar Fuentes del Manual de Marca -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <!-- Configuración de Tailwind para usar los colores y fuentes de ALBA -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            'sans': ['Montserrat', 'sans-serif'],
-            'serif': ['Merriweather', 'serif'],
-          },
-          colors: {
-            'alba-navy': '#0D2A4C',
-            'alba-gold': '#F2A900',
-            'alba-gold-hover': '#d49400',
-            'alba-light-gray': '#F5F5F5',
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destressa Lab | Ingeniería de Ventas & Bienestar</title>
+    <meta name="description" content="Optimizamos equipos comerciales B2B usando IA y Neurociencia. Vende más, estrés menos.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-color: #0A192F;       /* Azul Marino Profundo (Base) */
+            --bg-light: #112240;       /* Azul un poco más claro (Tarjetas) */
+            --text-main: #CCD6F6;      /* Blanco Grisáceo (Texto) */
+            --text-highlight: #64FFDA; /* Verde Cian (Acento/Botones) */
+            --text-white: #FFFFFF;     /* Títulos */
+            --transition: all 0.3s ease-in-out;
         }
-      }
-    }
-  </script>
-  
-  <!-- Estilos CSS personalizados para animaciones y visibilidad -->
-  <style>
-    /* Clases para manejar la visibilidad de las páginas */
-    .page-content {
-      display: block;
-      animation: fadeIn 0.5s ease-out forwards;
-    }
-    .page-content.hidden {
-      display: none;
-    }
-    
-    /* Animación de Fade-In */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Animación de Rebote para WhatsApp */
-    .animate-bounce-slow {
-      animation: bounce 3s infinite;
-    }
-    @keyframes bounce {
-        0%, 100% { transform: translateY(-5%); }
-        50% { transform: translateY(0); }
-    }
-    
-    /* Para que el cuerpo ocupe al menos toda la pantalla */
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      font-family: 'Montserrat', sans-serif; /* Fuente por defecto */
-    }
-    main {
-      flex-grow: 1;
-    }
-    
-    /* Estilos para la tipografía de "prose" (textos largos) */
-    .prose {
-      font-size: 1.125rem; /* lg */
-      line-height: 1.75;
-    }
-    .prose p {
-      margin-top: 1.25em;
-      margin-bottom: 1.25em;
-    }
-    .prose h3 {
-      font-size: 1.5rem; /* 2xl */
-      font-family: 'Merriweather', serif;
-      color: #0D2A4C;
-      margin-top: 1.5em;
-      margin-bottom: 0.75em;
-    }
-    .prose ul {
-      list-style: none;
-      padding-left: 0;
-      margin-top: 1.25em;
-      margin-bottom: 1.25em;
-    }
-    .prose ul li {
-      display: flex;
-      align-items: flex-start;
-      margin-top: 0.5em;
-    }
-  </style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        /* --- LAYOUT UTILS --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border: 1px solid var(--text-highlight);
+            color: var(--text-highlight);
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .btn:hover {
+            background: rgba(100, 255, 218, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--text-highlight);
+            color: var(--bg-color);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            background: var(--text-highlight);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text-highlight);
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover { color: var(--text-highlight); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            padding-top: 60px;
+        }
+
+        .hero-content h3 {
+            color: var(--text-highlight);
+            font-family: monospace;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            color: var(--text-white);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            line-height: 1.1;
+            color: #8892b0;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            max-width: 540px;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        /* --- PHILOSOPHY SECTION --- */
+        .philosophy {
+            background-color: var(--bg-light);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            font-size: 1.5rem;
+            color: var(--text-white);
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 200px;
+            height: 1px;
+            background: #233554;
+            margin-left: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--bg-color);
+            padding: 30px;
+            border-radius: 4px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--text-highlight);
+        }
+
+        .card h3 {
+            color: var(--text-white);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-highlight);
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .service-item {
+            background: var(--bg-light);
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+        }
+
+        .service-info h3 { color: var(--text-white); margin-bottom: 10px; font-size: 1.4rem; }
+        .service-info p { max-width: 600px; }
+
+        /* --- CONTACT / FOOTER --- */
+        .contact {
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            color: var(--text-white);
+            margin-bottom: 20px;
+        }
+
+        .contact p {
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #8892b0;
+            background: var(--bg-light);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content h2 { font-size: 2rem; }
+            .nav-links { display: none; } /* Simplificado para MVP */
+            .service-item { flex-direction: column; text-align: left; align-items: flex-start; gap: 20px; }
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-gray-800 selection:bg-alba-gold selection:text-alba-navy">
+<body>
 
-  <!-- ======================= -->
-  <!--        NAVBAR           -->
-  <!-- ======================= -->
-  <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-alba-navy py-4">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
-      <!-- Logo -->
-      <div class="flex items-center cursor-pointer" onclick="navigateTo('inicio')">
-        <div class="relative mr-2">
-          <!-- Icono SVG: Sun -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-alba-gold">
-            <circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
-          </svg>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">DL.</div>
+                <ul class="nav-links">
+                    <li><a href="#filosofia">Filosofía</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <a href="https://calendly.com" target="_blank" class="btn">Agendar Auditoría</a>
+            </nav>
         </div>
-        <span class="font-serif text-2xl font-bold tracking-wide text-white">ALBA</span>
-      </div>
+    </header>
 
-      <!-- Desktop Menu -->
-      <div class="hidden md:flex space-x-8">
-        <button onclick="navigateTo('inicio')" class="font-sans font-medium transition-colors text-white hover:text-alba-gold">Inicio</button>
-        <button onclick="navigateTo('nosotros')" class="font-sans font-medium transition-colors text-white hover:text-alba-gold">Sobre ALBA</button>
-        <button onclick="navigateTo('art')" class="font-sans font-medium transition-colors text-white hover:text-alba-gold">ART</button>
-        <button onclick="navigateTo('civil')" class="font-sans font-medium transition-colors text-white hover:text-alba-gold">Civil</button>
-        <button onclick="navigateTo('metodo')" class="font-sans font-medium transition-colors text-white hover:text-alba-gold">El Método</button>
-        <button onclick="navigateTo('contacto')" class="font-sans font-medium transition-colors text-white hover:text-alba-gold">Contacto</button>
-      </div>
-
-      <!-- Mobile Menu Button -->
-      <div class="md:hidden">
-        <button id="menu-open-button" onclick="toggleMenu()">
-          <!-- Icono SVG: Menu -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
-            <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
-        <button id="menu-close-button" onclick="toggleMenu()" class="hidden">
-          <!-- Icono SVG: X -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-alba-navy">
-            <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Menu Dropdown -->
-    <div id="mobile-menu" class="md:hidden bg-white absolute top-full left-0 w-full shadow-lg border-t border-gray-100 hidden">
-      <div class="flex flex-col p-4 space-y-4">
-        <button onclick="navigateTo('inicio')" class="text-alba-navy font-medium text-left py-2 border-b border-gray-100 last:border-0">Inicio</button>
-        <button onclick="navigateTo('nosotros')" class="text-alba-navy font-medium text-left py-2 border-b border-gray-100 last:border-0">Sobre ALBA</button>
-        <button onclick="navigateTo('art')" class="text-alba-navy font-medium text-left py-2 border-b border-gray-100 last:border-0">ART</button>
-        <button onclick="navigateTo('civil')" class="text-alba-navy font-medium text-left py-2 border-b border-gray-100 last:border-0">Civil</button>
-        <button onclick="navigateTo('metodo')" class="text-alba-navy font-medium text-left py-2 border-b border-gray-100 last:border-0">El Método</button>
-        <button onclick="navigateTo('contacto')" class="text-alba-navy font-medium text-left py-2 border-b border-gray-100 last:border-0">Contacto</button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ======================= -->
-  <!--     CONTENIDO PRINCIPAL   -->
-  <!-- ======================= -->
-  <main id="main-content">
-
-    <!-- ======================= -->
-    <!--        PÁGINA: INICIO   -->
-    <!-- ======================= -->
-    <section id="page-inicio" class="page-content">
-      <!-- Hero Section -->
-      <header class="relative bg-alba-navy text-white pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#1a3b66] to-transparent opacity-50"></div>
-        <div class="absolute top-20 right-0 w-64 h-64 bg-alba-gold rounded-full blur-[120px] opacity-20"></div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-          <div class="max-w-3xl mx-auto text-center">
-            <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Tu única tarea es recuperarte. <br/>
-              <span class="text-alba-gold">De la burocracia nos encargamos nosotros.</span>
-            </h1>
-            <p class="font-sans text-lg md:text-xl text-gray-200 mb-10 leading-relaxed max-w-2xl mx-auto">
-              Bienvenido a ALBA. Entendemos que un accidente te cambia la vida en un segundo.
-              Somos la calma y la claridad en medio del caos. Gestionamos todo el proceso para conseguirte la justicia que mereces.
-            </p>
-            <button onclick="navigateTo('contacto')" class="bg-alba-gold text-alba-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-alba-gold-hover transition shadow-lg transform hover:-translate-y-1 flex items-center mx-auto">
-              INICIAR MI AUDITORÍA GRATUITA 
-              <!-- Icono SVG: ArrowRight -->
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 w-5 h-5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </button>
-          </div>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h3>Hola, somos Destressa Lab</h3>
+                <h1>Ventas sin Estrés.</h1>
+                <h2>Crecimiento sin Burnout.</h2>
+                <p>
+                    Ayudamos a equipos comerciales B2B y estudios profesionales a facturar más eliminando el "ruido" operativo. Ingeniería aplicada a las ventas, IA y bienestar mental.
+                </p>
+                <a href="#contacto" class="btn btn-primary">Ver cómo funciona</a>
+            </div>
         </div>
-      </header>
-
-      <!-- Routing Section -->
-      <section class="py-16 bg-white relative -mt-10 z-20">
-        <div class="container mx-auto px-4">
-          <h2 class="text-center font-serif text-3xl text-alba-navy mb-10">¿Cuál es tu situación?</h2>
-          <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <!-- Card 1 -->
-            <div onclick="navigateTo('civil')" class="bg-white border-2 border-gray-100 p-8 rounded-xl shadow-lg hover:border-alba-gold transition cursor-pointer group">
-              <div class="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#fff4d6] transition">
-                <!-- Icono SVG: Car -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-alba-navy"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10H8c0 0-2.7.6-4.5 2.1C2.7 12.3 2 13.1 2 14v3c0 .6.4 1 1 1h2"></path><path d="M7 17H3.5c-.8 0-1.5-.7-1.5-1.5V12C2 10 3 8 5 8h14c2 0 3 2 3 4v3.5c0 .8-.7 1.5-1.5 1.5H17"></path><path d="M6 17v-5"></path><path d="M18 17v-5"></path><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="6.5" r="2.5"></circle></svg>
-              </div>
-              <h3 class="font-serif text-xl font-bold text-alba-navy mb-2">Tuve un Accidente de Tránsito</h3>
-              <p class="text-gray-600 text-sm">Reclamos contra aseguradoras, choques, caídas en vía pública.</p>
-              <div class="mt-4 text-alba-gold font-bold text-sm flex items-center">
-                Ver solución 
-                <!-- Icono SVG: ArrowRight -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 w-4 h-4"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </div>
-            </div>
-            <!-- Card 2 -->
-            <div onclick="navigateTo('art')" class="bg-white border-2 border-gray-100 p-8 rounded-xl shadow-lg hover:border-alba-gold transition cursor-pointer group">
-              <div class="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#fff4d6] transition">
-                <!-- Icono SVG: HardHat -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-alba-navy"><path d="M2 12s.4-1.2 1.2-2S4.8 8 7 8h10c2.2 0 3.8.8 4.8 2s1.2 2 1.2 2"></path><path d="M4 12v3.8c0 1.2.8 2.2 2 2.2h12c1.2 0 2-.8 2-2.2V12"></path><path d="M12 8V4"></path><path d="M14 4h-4"></path><path d="M10 14h4"></path></svg>
-              </div>
-              <h3 class="font-serif text-xl font-bold text-alba-navy mb-2">Tuve un Accidente de Trabajo (ART)</h3>
-              <p class="text-gray-600 text-sm">Accidentes laborales, enfermedades profesionales, reclamos a la ART.</p>
-              <div class="mt-4 text-alba-gold font-bold text-sm flex items-center">
-                Ver solución 
-                <!-- Icono SVG: ArrowRight -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 w-4 h-4"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Trust Section -->
-      <section class="py-16 bg-alba-light-gray">
-        <div class="container mx-auto px-4">
-          <div class="text-center mb-12">
-            <span class="text-alba-navy font-bold tracking-wider uppercase text-sm">La Promesa ALBA</span>
-            <h2 class="font-serif text-3xl md:text-4xl text-alba-navy mt-2">Justicia con Tranquilidad</h2>
-          </div>
-          
-          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Feature Card -->
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-alba-gold">
-              <div class="mb-4">
-                <!-- Icono SVG: Scale -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-alba-gold"><path d="m16 16 3-8 3 8c-.6.3-1.3.6-2 .7-.7.2-1.3.2-2 0-.7-.1-1.4-.4-2-.7z"></path><path d="m2 16 3-8 3 8c-.6.3-1.3.6-2 .7-.7.2-1.3.2-2 0-.7-.1-1.4-.4-2-.7z"></path><path d="M12 2v20"></path><path d="M6 7H2"></path><path d="M18 7h4"></path></svg>
-              </div>
-              <h3 class="font-serif text-lg font-bold text-alba-navy mb-2">Auditoría de Claridad</h3>
-              <p class="text-sm text-gray-600">Te explicamos tus derechos con palabras simples. Sin costo, sin 'legalismos'.</p>
-            </div>
-            <!-- Feature Card -->
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-alba-gold">
-              <div class="mb-4">
-                <!-- Icono SVG: UserCheck -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-alba-gold"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="16 11 18 13 22 9"></polyline></svg>
-              </div>
-              <h3 class="font-serif text-lg font-bold text-alba-navy mb-2">Asesor Personal</h3>
-              <p class="text-sm text-gray-600">Un especialista será tu único punto de contacto. Tendrás un nombre, no un call center.</p>
-            </div>
-            <!-- Feature Card -->
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-alba-gold">
-              <div class="mb-4">
-                <!-- Icono SVG: Shield -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-alba-gold"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-              </div>
-              <h3 class="font-serif text-lg font-bold text-alba-navy mb-2">Escudo Burocrático</h3>
-              <p class="text-sm text-gray-600">Manejamos cada trámite. Filtramos la presión de las aseguradoras para que respires.</p>
-            </div>
-            <!-- Feature Card -->
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-alba-gold">
-              <div class="mb-4">
-                <!-- Icono SVG: CheckCircle -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-alba-gold"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-              </div>
-              <h3 class="font-serif text-lg font-bold text-alba-navy mb-2">Garantía Costo Cero</h3>
-              <p class="text-sm text-gray-600">Solo cobramos honorarios si tú ganas. Nuestros intereses están 100% alineados.</p>
-            </div>
-          </div>
-        </div>
-      </section>
     </section>
 
-    <!-- ======================= -->
-    <!--    PÁGINA: NOSOTROS     -->
-    <!-- ======================= -->
-    <section id="page-nosotros" class="page-content hidden pt-24 pb-16">
-      <div class="bg-alba-navy text-white py-20 text-center relative overflow-hidden">
-         <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full bg-gradient-to-b from-transparent to-[#081d36] opacity-80"></div>
-         <div class="relative z-10 container mx-auto px-4">
-            <h1 class="font-serif text-4xl md:text-5xl font-bold mb-4">Somos la calma y la claridad en tu reclamo.</h1>
-         </div>
-      </div>
+    <section id="filosofia" class="philosophy">
+        <div class="container">
+            <h2 class="section-title">Nuestra Filosofía</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">📉</div>
+                    <h3>Señal > Ruido</h3>
+                    <p>No añadimos tareas a tu equipo. Eliminamos lo que sobra. La productividad real es la "Vía Negativa": quitar fricción.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🤖</div>
+                    <h3>Tecnología Humanista</h3>
+                    <p>Usamos IA para investigar y automatizar el trabajo sucio, dejando al humano libre para conectar y persuadir.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Bienestar es Rentabilidad</h3>
+                    <p>Un equipo quemado no vende. Integramos herramientas de neurociencia para gestionar el estrés bajo presión.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <div class="container mx-auto px-4 py-16">
-        <div class="max-w-3xl mx-auto">
-          <p class="text-xl font-serif text-alba-navy mb-8 border-l-4 border-alba-gold pl-6 italic">
-            "Nuestro nombre significa 'amanecer', y esa es exactamente nuestra promesa: ser la luz que necesitas en este momento oscuro."
-          </p>
-          
-          <div class="prose text-gray-600 space-y-6">
+    <section id="servicios">
+        <div class="container">
+            <h2 class="section-title">Qué hacemos</h2>
+            <div class="services-list">
+                <div class="service-item">
+                    <div class="service-info">
+                        <h3>01. Auditoría de Descompresión</h3>
+                        <p>Analizamos tu flujo comercial actual. Identificamos las fugas de tiempo y estrés. Te entregamos un plan para recuperar 10 horas semanales.</p>
+                    </div>
+                    <a href="#" class="btn">Detalles</a>
+                </div>
+                <div class="service-item">
+                    <div class="service-info">
+                        <h3>02. Marketing Jurídico & B2B</h3>
+                        <p>Estrategias de captación de clientes de alto valor. Sin bailes en TikTok. Solo autoridad, Ads estratégicos y conversión.</p>
+                    </div>
+                    <a href="#" class="btn">Detalles</a>
+                </div>
+                <div class="service-item">
+                    <div class="service-info">
+                        <h3>03. In-Company Training</h3>
+                        <p>Capacitación para equipos de venta: Neuroventas, manejo de IA para vendedores y gestión del estrés en cierre de mes.</p>
+                    </div>
+                    <a href="#" class="btn">Detalles</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h3>¿Listo para bajar el ruido?</h3>
+            <h2>Hablemos de tu caso.</h2>
             <p>
-              Un accidente te cambia la vida en un segundo. De golpe, no solo tienes que lidiar con el dolor físico, sino con un laberinto de burocracia: llamados de aseguradoras que te presionan, plazos que vencen y la frustración de no saber qué te corresponde.
+                No buscamos venderte humo. Buscamos optimizar tu máquina de ventas.
+                Agenda una llamada breve de diagnóstico.
             </p>
-            <p>
-              Fundamos <strong>ALBA (Asesoría Legal Buenos Aires)</strong> porque creemos que nadie debería enfrentar ese caos solo.
-            </p>
-            <h3 class="text-2xl font-serif text-alba-navy mt-8 mb-4">Consultora de Especialistas</h3>
-            <p>
-              No somos un estudio jurídico tradicional. A diferencia de los estudios generalistas que manejan divorcios o contratos, nosotros nos dedicamos <strong>100% a una sola cosa: reclamos por accidentes</strong>.
-            </p>
-            <p>
-              Y a diferencia de los estudios agresivos que solo te ven como un "caso", nuestro primer trabajo es que entiendas el proceso. Auditamos tu situación y diseñamos la estrategia legal precisa.
-            </p>
-            
-            <div class="bg-[#fff8e6] p-6 rounded-lg mt-8 border border-alba-gold">
-              <p class="font-bold text-alba-navy text-center text-lg">
-                Tu única tarea es recuperarte. La nuestra es gestionar todo lo demás.
-              </p>
-            </div>
-          </div>
+            <a href="mailto:hola@destressa.com" class="btn btn-primary">Enviar Email</a>
+            <br><br>
+            <a href="https://wa.me/" class="btn">Contactar por WhatsApp</a>
         </div>
-      </div>
     </section>
 
-    <!-- ======================= -->
-    <!--        PÁGINA: ART      -->
-    <!-- ======================= -->
-    <section id="page-art" class="page-content hidden pt-24 pb-16">
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <div class="flex items-center mb-6">
-            <!-- Icono SVG: HardHat -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-alba-gold mr-4"><path d="M2 12s.4-1.2 1.2-2S4.8 8 7 8h10c2.2 0 3.8.8 4.8 2s1.2 2 1.2 2"></path><path d="M4 12v3.8c0 1.2.8 2.2 2 2.2h12c1.2 0 2-.8 2-2.2V12"></path><path d="M12 8V4"></path><path d="M14 4h-4"></path><path d="M10 14h4"></path></svg>
-            <span class="text-sm font-bold tracking-widest text-gray-500 uppercase">Servicios</span>
-          </div>
-          <h1 class="font-serif text-4xl md:text-5xl font-bold text-alba-navy mb-8">
-            Gestión de Reclamos ART: <br/>Tu Aliado frente a la Comisión Médica
-          </h1>
-
-          <!-- Empathy Block -->
-          <div class="bg-white shadow-xl rounded-2xl overflow-hidden border-l-8 border-alba-gold mb-12">
-            <div class="p-8">
-              <h3 class="font-serif text-2xl text-alba-navy mb-4">Sabemos cómo te sientes</h3>
-              <p class="text-gray-600 leading-relaxed italic">
-                "El dolor sigue, pero la ART te dio un 'alta prematura'. Sientes que minimizan tu lesión, no entiendes qué es la 'Comisión Médica' y tienes miedo de perder tu trabajo."
-              </p>
-            </div>
-          </div>
-
-          <div class="prose text-gray-600 mb-12">
-            <p class="font-medium text-lg text-alba-navy">
-              Estás en el lugar correcto. En ALBA, somos especialistas en el sistema de Riesgos del Trabajo.
-            </p>
-            <p>Nuestro servicio de Gestión ART está diseñado para protegerte:</p>
-            <ul class="space-y-4 mt-6">
-              <li>
-                <!-- Icono SVG: CheckCircle -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-alba-gold mr-3 flex-shrink-0 mt-1"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                <span>Auditamos tu caso: Analizamos si tu alta fue prematura.</span>
-              </li>
-              <li>
-                <!-- Icono SVG: CheckCircle -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-alba-gold mr-3 flex-shrink-0 mt-1"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                <span>Te representamos en la Comisión Médica (SRT): Preparamos tu expediente.</span>
-              </li>
-              <li>
-                <!-- Icono SVG: CheckCircle -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-alba-gold mr-3 flex-shrink-0 mt-1"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                <span>Gestionamos tu reclamo in itinere: Si te accidentaste yendo o volviendo.</span>
-              </li>
-              <li>
-                <!-- Icono SVG: CheckCircle -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-alba-gold mr-3 flex-shrink-0 mt-1"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                <span>Luchamos por tu indemnización: Negociamos la máxima compensación.</span>
-              </li>
-            </ul>
-            <p class="mt-8 font-bold text-alba-navy">
-              No dejes que la burocracia de la ART decida sobre tu salud.
-            </p>
-          </div>
-
-          <button onclick="navigateTo('contacto')" class="w-full md:w-auto bg-alba-gold text-alba-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-alba-gold-hover transition shadow-lg text-center">
-            INICIAR MI RECLAMO DE ART
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================= -->
-    <!--       PÁGINA: CIVIL     -->
-    <!-- ======================= -->
-    <section id="page-civil" class="page-content hidden pt-24 pb-16">
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <div class="flex items-center mb-6">
-            <!-- Icono SVG: Car -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-alba-gold mr-4"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10H8c0 0-2.7.6-4.5 2.1C2.7 12.3 2 13.1 2 14v3c0 .6.4 1 1 1h2"></path><path d="M7 17H3.5c-.8 0-1.5-.7-1.5-1.5V12C2 10 3 8 5 8h14c2 0 3 2 3 4v3.5c0 .8-.7 1.5-1.5 1.5H17"></path><path d="M6 17v-5"></path><path d="M18 17v-5"></path><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="6.5" r="2.5"></circle></svg>
-            <span class="text-sm font-bold tracking-widest text-gray-500 uppercase">Servicios</span>
-          </div>
-          <h1 class="font-serif text-4xl md:text-5xl font-bold text-alba-navy mb-8">
-            Gestión de Reclamos Civiles: <br/>Tu Voz Experta frente a la Aseguradora
-          </h1>
-
-          <!-- Empathy Block -->
-          <div class="bg-white shadow-xl rounded-2xl overflow-hidden border-l-8 border-alba-gold mb-12">
-            <div class="p-8">
-              <h3 class="font-serif text-2xl text-alba-navy mb-4">Sabemos cómo te sientes</h3>
-              <p class="text-gray-600 leading-relaxed italic">
-                "El choque fue solo el comienzo. Ahora tienes que lidiar con la aseguradora, que 'te tiene a las vueltas'. Te ofrecen un pago que no cubre los gastos y el 'gestor' parece trabajar para ellos."
-              </p>
-            </div>
-          </div>
-
-          <div class="prose text-gray-600 mb-12">
-            <p class="font-medium text-lg text-alba-navy">
-              En ALBA, nos convertimos en tu voz experta. Nos especializamos en "Daños y Perjuicios".
-            </p>
-            <ul class="space-y-4 mt-6">
-              <li>
-                <!-- Icono SVG: CheckCircle -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-alba-gold mr-3 flex-shrink-0 mt-1"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                <span>Negociación de Daños Materiales y Físicos: Auto, moto y lesiones.</span>
-              </li>
-              <li>
-                <!-- Icono SVG: CheckCircle -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-alba-gold mr-3 flex-shrink-0 mt-1"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                <span>Caídas en la Vía Pública: Reclamos a Consorcios o Municipios.</span>
-              </li>
-              <li>
-                <!-- Icono SVG: CheckCircle -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-alba-gold mr-3 flex-shrink-0 mt-1"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                <span>Evitamos el acuerdo rápido: No firmes nada por menos de lo que vale.</span>
-              </li>
-              <li>
-                <!-- Icono SVG: CheckCircle -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-alba-gold mr-3 flex-shrink-0 mt-1"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                <span>Gestión de la 'letra chica': Nos encargamos del papelerío y mediaciones.</span>
-              </li>
-            </ul>
-          </div>
-
-          <button onclick="navigateTo('contacto')" class="w-full md:w-auto bg-alba-navy text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#1a3b66] transition shadow-lg text-center">
-            QUIERO MI INDEMNIZACIÓN JUSTA
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================= -->
-    <!--      PÁGINA: MÉTODO     -->
-    <!-- ======================= -->
-    <section id="page-metodo" class="page-content hidden pt-24 pb-16 bg-[#F9FAFB]">
-      <div class="container mx-auto px-4">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h1 class="font-serif text-4xl font-bold text-alba-navy mb-6">
-            El "Método ALBA"
-          </h1>
-          <p class="text-xl text-gray-600">
-            Justicia con Tranquilidad, Paso a Paso. Creemos que la confianza se gana con transparencia.
-          </p>
-        </div>
-
-        <div class="grid gap-8 max-w-5xl mx-auto">
-          <!-- Paso 1 -->
-          <div class="relative flex flex-col md:flex-row items-center md:items-start bg-white p-8 rounded-xl shadow-md border border-gray-100">
-            <div class="absolute top-0 left-0 bg-alba-gold text-alba-navy font-bold px-3 py-1 rounded-tl-xl rounded-br-xl">
-              PASO 01
-            </div>
-            <div class="bg-alba-navy p-4 rounded-full mb-4 md:mb-0 md:mr-6 flex-shrink-0 mt-6 md:mt-0">
-              <!-- Icono SVG: HeartHandshake -->
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-white"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3.35.99-4.5 2.5C10.85 3.99 9.26 3 7.5 3A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5L8.5 17Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.82 2.94 0l.02-.02L12 11l.02-.02c.82-.82 2.13-.82 2.94 0v0a2.17 2.17 0 0 0 0-3.08L12 5Z"></path></svg>
-            </div>
-            <div>
-              <h3 class="font-serif text-2xl font-bold text-alba-navy">
-                ESCUCHAMOS <span class="text-lg font-sans font-normal text-gray-500 block md:inline md:ml-2">(Tu Auditoría Gratuita)</span>
-              </h3>
-              <p class="text-gray-600 mt-3 leading-relaxed">
-                Todo comienza con una charla confidencial. Nos cuentas qué pasó. Te escuchamos y explicamos tus derechos en palabras simples.
-              </p>
-            </div>
-          </div>
-          <!-- Paso 2 -->
-          <div class="relative flex flex-col md:flex-row items-center md:items-start bg-white p-8 rounded-xl shadow-md border border-gray-100">
-            <div class="absolute top-0 left-0 bg-alba-gold text-alba-navy font-bold px-3 py-1 rounded-tl-xl rounded-br-xl">
-              PASO 02
-            </div>
-            <div class="bg-alba-navy p-4 rounded-full mb-4 md:mb-0 md:mr-6 flex-shrink-0 mt-6 md:mt-0">
-              <!-- Icono SVG: FileText -->
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-white"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
-            </div>
-            <div>
-              <h3 class="font-serif text-2xl font-bold text-alba-navy">
-                PLANIFICAMOS <span class="text-lg font-sans font-normal text-gray-500 block md:inline md:ml-2">(El Escudo Legal)</span>
-              </h3>
-              <p class="text-gray-600 mt-3 leading-relaxed">
-                Activamos tu 'Escudo Burocrático'. Enviamos Cartas Documento y diseñamos la estrategia. Las llamadas de aseguradoras ahora vienen a nosotros.
-              </p>
-            </div>
-          </div>
-          <!-- Paso 3 -->
-          <div class="relative flex flex-col md:flex-row items-center md:items-start bg-white p-8 rounded-xl shadow-md border border-gray-100">
-            <div class="absolute top-0 left-0 bg-alba-gold text-alba-navy font-bold px-3 py-1 rounded-tl-xl rounded-br-xl">
-              PASO 03
-            </div>
-            <div class="bg-alba-navy p-4 rounded-full mb-4 md:mb-0 md:mr-6 flex-shrink-0 mt-6 md:mt-0">
-              <!-- Icono SVG: UserCheck -->
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-white"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="16 11 18 13 22 9"></polyline></svg>
-            </div>
-            <div>
-              <h3 class="font-serif text-2xl font-bold text-alba-navy">
-                GESTIONAMOS <span class="text-lg font-sans font-normal text-gray-500 block md:inline md:ml-2">(Tu Asesor Personal)</span>
-              </h3>
-              <p class="text-gray-600 mt-3 leading-relaxed">
-                Tu Asesor reúne documentación, te acompaña a pericias médicas y audiencias. Te mantendrá informado proactivamente.
-              </p>
-            </div>
-          </div>
-          <!-- Paso 4 -->
-          <div class="relative flex flex-col md:flex-row items-center md:items-start bg-white p-8 rounded-xl shadow-md border border-gray-100">
-            <div class="absolute top-0 left-0 bg-alba-gold text-alba-navy font-bold px-3 py-1 rounded-tl-xl rounded-br-xl">
-              PASO 04
-            </div>
-            <div class="bg-alba-navy p-4 rounded-full mb-4 md:mb-0 md:mr-6 flex-shrink-0 mt-6 md:mt-0">
-              <!-- Icono SVG: Sun -->
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-white"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
-            </div>
-            <div>
-              <h3 class="font-serif text-2xl font-bold text-alba-navy">
-                RESOLVEMOS <span class="text-lg font-sans font-normal text-gray-500 block md:inline md:ml-2">(Tu Indemnización)</span>
-              </h3>
-              <p class="text-gray-600 mt-3 leading-relaxed">
-                Llegamos a la etapa final. Nos aseguramos de que recibas la máxima indemnización posible. Solo cuando tú cobras, nosotros cobramos.
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="text-center mt-12">
-          <button onclick="navigateTo('contacto')" class="bg-alba-gold text-alba-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-alba-gold-hover transition shadow-lg">
-            Comenzar con el Paso 1
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================= -->
-    <!--     PÁGINA: CONTACTO    -->
-    <!-- ======================= -->
-    <section id="page-contacto" class="page-content hidden pt-24 pb-16">
-      <div class="container mx-auto px-4">
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
-          
-          <!-- Columna Izquierda: Texto & Info -->
-          <div>
-            <h1 class="font-serif text-4xl font-bold text-alba-navy mb-6">
-              Empecemos a cuidar de tu caso hoy.
-            </h1>
-            <p class="text-gray-600 text-lg mb-8 leading-relaxed">
-              Dar el primer paso es el más difícil, pero estamos aquí para hacerlo simple. Tu consulta es <span class="font-bold text-alba-navy">100% gratuita, confidencial y sin ningún compromiso</span>.
-            </p>
-
-            <div class="bg-alba-gold bg-opacity-10 p-6 rounded-xl border border-alba-gold mb-8">
-              <h3 class="font-bold text-alba-navy text-lg mb-2 flex items-center">
-                <!-- Icono SVG: Phone -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                Opción Recomendada
-              </h3>
-              <p class="text-gray-700 mb-4">Es la vía más rápida. Un asesor te responderá a la brevedad.</p>
-              <a href="httpsa://wa.me/TUNUMERODEWHATSAPP" target="_blank" class="bg-[#25D366] text-white w-full py-3 rounded-lg font-bold hover:bg-opacity-90 transition flex items-center justify-center shadow-md">
-                 Escribir por WhatsApp
-              </a>
-            </div>
-
-            <div class="space-y-4 text-gray-600">
-              <p class="flex items-center"><span class="font-bold mr-2 text-alba-navy">Email:</span> consultas@alba-legal.com</p>
-              <p class="flex items-center"><span class="font-bold mr-2 text-alba-navy">Teléfono:</span> (011) 5555-0123</p>
-              <p class="flex items-center"><span class="font-bold mr-2 text-alba-navy">Ubicación:</span> GBA Zona Norte / Oeste</p>
-            </div>
-          </div>
-
-          <!-- Columna Derecha: Formulario -->
-          <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-alba-navy">
-            <h3 class="font-serif text-2xl text-alba-navy mb-6">Déjanos tus datos</h3>
-            <form id="contact-form" class="space-y-4">
-              <div>
-                <label class="block text-sm font-bold text-gray-700 mb-1">Nombre Completo</label>
-                <input type="text" id="form-name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-alba-navy focus:ring-1 focus:ring-alba-navy" placeholder="Tu nombre" required />
-              </div>
-              <div>
-                <label class="block text-sm font-bold text-gray-700 mb-1">Teléfono</label>
-                <input type="tel" id="form-phone" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-alba-navy focus:ring-1 focus:ring-alba-navy" placeholder="(011) 15..." required />
-              </div>
-              <div>
-                <label class="block text-sm font-bold text-gray-700 mb-1">¿Qué pasó?</label>
-                <textarea id="form-message" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-alba-navy focus:ring-1 focus:ring-alba-navy h-32" placeholder="Breve descripción del accidente..." required></textarea>
-              </div>
-              <button type="submit" class="w-full bg-alba-navy text-white font-bold py-4 rounded-lg hover:bg-[#1a3b66] transition shadow-lg">
-                SOLICITAR LLAMADO
-              </button>
-            </form>
-            <!-- Mensaje de éxito del formulario -->
-            <div id="form-success-message" class="hidden mt-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded-lg">
-              ¡Gracias por contactarnos! Un asesor se comunicará contigo a la brevedad.
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ======================= -->
-  <!--         FOOTER          -->
-  <!-- ======================= -->
-  <footer class="bg-alba-navy text-white py-12">
-    <div class="container mx-auto px-4 grid md:grid-cols-3 gap-8">
-      <div>
-        <div class="flex items-center mb-4">
-          <!-- Icono SVG: Sun -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-alba-gold mr-2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
-          <span class="font-serif text-xl font-bold">ALBA</span>
-        </div>
-        <p class="text-gray-300 font-sans text-sm leading-relaxed">
-          Asesoría Legal Buenos Aires.<br/>
-          Justicia con Tranquilidad.<br/>
-          Tu única tarea es recuperarte.
-        </p>
-      </div>
-      <div>
-        <h4 class="font-serif text-lg mb-4 text-alba-gold">Enlaces Rápidos</h4>
-        <ul class="space-y-2 text-sm text-gray-300">
-          <li class="cursor-pointer hover:text-white" onclick="navigateTo('inicio')">Inicio</li>
-          <li class="cursor-pointer hover:text-white" onclick="navigateTo('art')">Accidentes de Trabajo</li>
-          <li class="cursor-pointer hover:text-white" onclick="navigateTo('civil')">Accidentes de Tránsito</li>
-          <li class="cursor-pointer hover:text-white" onclick="navigateTo('metodo')">Nuestro Método</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-serif text-lg mb-4 text-alba-gold">Contacto</h4>
-        <ul class="space-y-2 text-sm text-gray-300">
-          <li class="flex items-center">
-            <!-- Icono SVG: Phone -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mr-2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            (011) 5555-0123
-          </li>
-          <li class="flex items-center">
-            <!-- Icono SVG: Briefcase -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mr-2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-            GBA Zona Norte / Oeste
-          </li>
-          <li class="mt-4">
-            <button onclick="navigateTo('contacto')" class="bg-alba-gold text-alba-navy px-4 py-2 rounded font-bold hover:bg-opacity-90 transition text-sm w-full md:w-auto">
-              Iniciar Auditoría Gratuita
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="text-center text-gray-500 text-xs mt-12 pt-8 border-t border-gray-800">
-      &copy; 2024 ALBA Asesoría Legal Buenos Aires. Todos los derechos reservados.
-    </div>
-  </footer>
-
-  <!-- ======================= -->
-  <!--  BOTÓN FLOTANTE WHATSAPP  -->
-  <!-- ======================= -->
-  <a href="httpsa://wa.me/TUNUMERODEWHATSAPP" target="_blank" class="fixed bottom-6 right-6 z-40 animate-bounce-slow">
-    <button class="bg-[#25D366] p-4 rounded-full shadow-xl hover:bg-[#20b858] transition flex items-center justify-center text-white">
-       <!-- Icono SVG: Phone -->
-       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-    </button>
-  </a>
-
-  <!-- ======================= -->
-  <!--   SCRIPT DE NAVEGACIÓN    -->
-  <!-- ======================= -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      
-      const navbar = document.getElementById('navbar');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const menuOpenButton = document.getElementById('menu-open-button');
-      const menuCloseButton = document.getElementById('menu-close-button');
-      const allPages = document.querySelectorAll('.page-content');
-      const contactForm = document.getElementById('contact-form');
-      const successMessage = document.getElementById('form-success-message');
-
-      // 1. Lógica de Scroll de la Navbar
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-          navbar.classList.add('bg-white', 'shadow-md', 'py-2');
-          navbar.classList.remove('bg-alba-navy', 'py-4');
-          // Cambiar color de botones de menú y logo
-          menuOpenButton.querySelector('svg').classList.add('text-alba-navy');
-          menuOpenButton.querySelector('svg').classList.remove('text-white');
-          menuCloseButton.querySelector('svg').classList.add('text-alba-navy');
-          menuCloseButton.querySelector('svg').classList.remove('text-white');
-          navbar.querySelector('.font-serif').classList.add('text-alba-navy');
-          navbar.querySelector('.font-serif').classList.remove('text-white');
-          navbar.querySelectorAll('.hidden.md\\:flex button').forEach(button => {
-            button.classList.add('text-alba-navy');
-            button.classList.remove('text-white');
-          });
-        } else {
-          navbar.classList.remove('bg-white', 'shadow-md', 'py-2');
-          navbar.classList.add('bg-alba-navy', 'py-4');
-          // Revertir colores
-          menuOpenButton.querySelector('svg').classList.remove('text-alba-navy');
-          menuOpenButton.querySelector('svg').classList.add('text-white');
-          menuCloseButton.querySelector('svg').classList.remove('text-alba-navy');
-          menuCloseButton.querySelector('svg').classList.add('text-white');
-          navbar.querySelector('.font-serif').classList.remove('text-alba-navy');
-          navbar.querySelector('.font-serif').classList.add('text-white');
-          navbar.querySelectorAll('.hidden.md\\:flex button').forEach(button => {
-            button.classList.remove('text-alba-navy');
-            button.classList.add('text-white');
-          });
-        }
-      });
-
-      // 2. Lógica de Menú Móvil
-      window.toggleMenu = () => {
-        const isOpen = mobileMenu.classList.toggle('hidden');
-        menuOpenButton.classList.toggle('hidden', !isOpen);
-        menuCloseButton.classList.toggle('hidden', isOpen);
-      };
-
-      // 3. Lógica de Navegación de Páginas
-      window.navigateTo = (pageId) => {
-        // Ocultar todas las páginas
-        allPages.forEach(page => {
-          page.classList.add('hidden');
-        });
-        
-        // Mostrar la página seleccionada
-        const targetPage = document.getElementById(`page-${pageId}`);
-        if (targetPage) {
-          targetPage.classList.remove('hidden');
-        }
-        
-        // Cerrar menú móvil (si está abierto)
-        if (!mobileMenu.classList.contains('hidden')) {
-          toggleMenu();
-        }
-        
-        // Scroll al inicio de la página
-        window.scrollTo(0, 0);
-      };
-      
-      // 4. Lógica del Formulario de Contacto
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault(); // Prevenir envío real
-        
-        // Opcional: recolectar datos (aquí solo simulamos)
-        // const name = document.getElementById('form-name').value;
-        // const phone = document.getElementById('form-phone').value;
-        // const message = document.getElementById('form-message').value;
-        
-        // Mostrar mensaje de éxito
-        successMessage.classList.remove('hidden');
-        
-        // Limpiar formulario
-        contactForm.reset();
-        
-        // Ocultar mensaje después de 5 segundos
-        setTimeout(() => {
-          successMessage.classList.add('hidden');
-        }, 5000);
-      });
-
-    });
-  </script>
+    <footer>
+        <p>&copy; 2025 Destressa Lab. Todos los derechos reservados.</p>
+        <p style="margin-top:5px; opacity: 0.5;">Buenos Aires, Argentina.</p>
+    </footer>
 
 </body>
 </html>
